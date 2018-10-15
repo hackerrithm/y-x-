@@ -4,16 +4,7 @@ import { Grid, Typography } from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { styles } from '../ui/Start';
 
-
-export interface IProps {
-    loading: boolean;
-    classNamees: any;
-}
-
-export interface IState { }
-
-
-export default withStyles(styles, { withTheme: true }) (class Start extends React.Component<IProps, IState> {
+export default withStyles(styles, { withTheme: true }) (class Start extends React.Component {
     public render() {
         return [
             <div key={"start-page"}>
@@ -25,7 +16,6 @@ export default withStyles(styles, { withTheme: true }) (class Start extends Reac
         ];
     }
 })
-
 
 class BigPicture extends React.Component {
     public render() {

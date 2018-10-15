@@ -1,12 +1,16 @@
 import * as React from "react";
-import Start from "./start/web/components/Start";
-import withRoot from './ui/materialDesign/withRoot';
+import AppRouter from "./routes";
 
-export default withRoot (class App extends React.Component {
+import withRoot from './ui/materialDesign/withRoot';
+import Navbar from "./navigation/web/components/Navbar";
+
+export default withRoot(class App extends React.Component {
     public render() {
         return (
             <div className="App">
-               <Start key={"start-page"} />
+                <Navbar />
+                <AppRouter />
+                {this.props.children}
             </div>
         );
     }

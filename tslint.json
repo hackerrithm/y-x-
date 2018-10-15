@@ -8,6 +8,7 @@
         "object-literal-sort-keys": false
     },
     "jsx-boolean-value": false,
+    "ordered-imports": false,
     "linterOptions": {
         "object-literal-sort-keys": [false, "ignore-case", "match-declaration-order", "shorthand-first"],
         "exclude": [
