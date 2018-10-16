@@ -1,17 +1,25 @@
 import * as React from "react";
-import AppRouter from "./routes";
-
-import withRoot from './ui/materialDesign/withRoot';
 import Navbar from "./navigation/web/components/Navbar";
+import withRoot from "./ui/materialDesign/withRoot";
 
-export default withRoot(class App extends React.Component {
-    public render() {
-        return (
-            <div className="App">
+interface IProps { 
+    children?: any;
+}
+
+export default withRoot(
+    class App extends React.Component<IProps, {}> {
+        constructor(props: IProps) {
+            super(props);
+        }
+
+        public render() {
+            return (
+                <div>
                 <Navbar />
-                <AppRouter />
                 {this.props.children}
-            </div>
-        );
+                </div>
+
+            );
+        }
     }
-})
+);

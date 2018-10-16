@@ -4,7 +4,7 @@ import { Grid, Typography } from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { styles } from '../ui/Start';
 
-export default withStyles(styles, { withTheme: true }) (class Start extends React.Component {
+class Start extends React.Component {
     public render() {
         return [
             <div key={"start-page"}>
@@ -15,7 +15,7 @@ export default withStyles(styles, { withTheme: true }) (class Start extends Reac
             </div>
         ];
     }
-})
+}
 
 class BigPicture extends React.Component {
     public render() {
@@ -32,4 +32,6 @@ class BigPicture extends React.Component {
         )
     }
 }
+
+export default withStyles(styles, { withTheme: true }) (Start)
 

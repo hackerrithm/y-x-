@@ -2,13 +2,14 @@
     "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
     "rules": {
         "object-literal-sort-keys": false,
+        "ordered-imports": false,        
         "max-classes-per-file": [true, 4]
     },
     "jsRules": {
-        "object-literal-sort-keys": false
+        "object-literal-sort-keys": false,
+        "ordered-imports": false
     },
     "jsx-boolean-value": false,
-    "ordered-imports": false,
     "linterOptions": {
         "object-literal-sort-keys": [false, "ignore-case", "match-declaration-order", "shorthand-first"],
         "exclude": [

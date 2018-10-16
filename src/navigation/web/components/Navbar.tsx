@@ -17,7 +17,7 @@ export interface INavbarProps {
     classes: any;
 }
 
-export default withStyles(styles, { withTheme: true }) (class Navbar extends React.Component<INavbarProps> {
+class Navbar extends React.Component<INavbarProps> {
     constructor(props: INavbarProps) {
         super(props);
     }
@@ -47,37 +47,36 @@ export default withStyles(styles, { withTheme: true }) (class Navbar extends Rea
                                 <Button
                                     style={{ textDecoration: "none", color: "blue" }}
                                     color="secondary"
-                                >
+                                / >
                                     
 
-                                </Button>
                             </NavLink>
                         </Typography>
                         <NavLink
                             style={{ textDecoration: "none", color: "red" }}
-                            to="/dashboard"
+                            to="/login"
                         >
                             <Button
                                 style={{ textDecoration: "none", color: "blue" }}
                                 color="secondary"
-                            >
+                            />
                               
-                            </Button>
                         </NavLink>
                         <NavLink
                             style={{ textDecoration: "none", color: "red" }}
-                            to="/blog"
+                            to="/signup"
                         >
                             <Button
                                 style={{ textDecoration: "none", color: "blue" }}
                                 color="secondary"
-                            >
-                               
-                            </Button>
+                            />
+
                         </NavLink>
                     </Toolbar>
                 </AppBar>
             </div>
         );
     }
-})
+}
+
+export default withStyles(styles, { withTheme: true }) (Navbar)
