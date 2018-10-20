@@ -8,6 +8,7 @@ export default class Home extends React.Component {
     }
     public async componentDidMount() {
         await this.displayToken();
+        // location.reload();
     }
 
     public displayToken = async () => {

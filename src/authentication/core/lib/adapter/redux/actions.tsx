@@ -1,5 +1,5 @@
 import * as ActionTypes from "./types";
-import { userService } from "../../service/authentication";
+import { Authentication } from "../../service/authentication";
 
 const isLoggedIn = (bool: any) => {
     return {
@@ -33,7 +33,7 @@ const login = (username: string, password: string): any => {
             return;
         }
 
-        userService
+        Authentication
             .login(username, password)
             .then((res: any) => {
                 dispatch(isLoggedIn(true));

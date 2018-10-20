@@ -43,14 +43,16 @@ class Navbar extends React.Component<IProps, IState> {
         await this.checkAuthenticationStatus();
     }
 
+
     public checkAuthenticationStatus() {
         if (
-			localStorage.getItem("token") !== null ||
-			localStorage.getItem("token") !== undefined
+			localStorage.getItem("token") !== null &&
+            localStorage.getItem("token") !== undefined &&
+            localStorage.getItem("token") 
 		) {
 			this.setState({
 				isAuthenticated: true
-			});
+            });            
         }
         // $(window).on('storage',() => {
         //     if(localStorage.getItem('access-token')) {

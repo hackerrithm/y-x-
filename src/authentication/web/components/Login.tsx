@@ -76,12 +76,14 @@ class Login extends React.Component<IProps, IState> {
     public componentDidUpdate() {
         if (this.props.isLoggedIn) {
             this.props.history.push("/home");
+            window.location.reload();
         }
         if (this.props.loginHasError) {
             this.props.history.push("/");
         }
     }
 
+    
     public login = async (): Promise<any> => {
         await this.props.login(
             this.state.username as string,

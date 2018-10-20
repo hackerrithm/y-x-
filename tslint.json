@@ -3,11 +3,13 @@
     "rules": {
         "object-literal-sort-keys": false,
         "ordered-imports": false,        
-        "max-classes-per-file": [true, 4]
+        "max-classes-per-file": [true, 4],
+        "no-namespace": [false, "allow-declarations"]
     },
     "jsRules": {
         "object-literal-sort-keys": false,
-        "ordered-imports": false
+        "ordered-imports": false,
+        "no-namespace": [false, "allow-declarations"]
     },
     "jsx-boolean-value": false,
     "linterOptions": {
