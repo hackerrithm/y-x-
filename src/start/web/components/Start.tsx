@@ -28,9 +28,7 @@ class SubscriptionForm extends React.PureComponent {
                 hinttext={label}
                 floatinglabeltext={label}
                 errortext={touched && error}
-                ref={(c: any) => {
-                    this.textInput = c;
-                }}
+                ref={...input}
                 onChangeText={input.onChange}
                 {...custom}
             />

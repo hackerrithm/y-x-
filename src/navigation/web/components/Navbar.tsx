@@ -7,6 +7,9 @@ import {
 } from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { default as MenuIcon } from "@material-ui/icons/Menu";
+import SearchIcon from "@material-ui/icons/Search";
+import InputBase from "@material-ui/core/InputBase";
+
 import { NavLink } from "react-router-dom";
 
 import * as React from "react";
@@ -24,7 +27,7 @@ export interface IState {
 
 const mapStateToProps = (state: any) => {
     return {
-        isLoggedIn: state.authenticationReducer.isLoggedIn,
+        isLoggedIn: state.authenticationReducer.isLoggedIn
     };
 };
 
@@ -34,7 +37,7 @@ class Navbar extends React.Component<IProps, IState> {
 
         this.state = {
             isAuthenticated: false
-        }
+        };
 
         this.logout = this.logout.bind(this);
     }
@@ -43,16 +46,15 @@ class Navbar extends React.Component<IProps, IState> {
         await this.checkAuthenticationStatus();
     }
 
-
     public checkAuthenticationStatus() {
         if (
-			localStorage.getItem("token") !== null &&
+            localStorage.getItem("token") !== null &&
             localStorage.getItem("token") !== undefined &&
-            localStorage.getItem("token") 
-		) {
-			this.setState({
-				isAuthenticated: true
-            });            
+            localStorage.getItem("token")
+        ) {
+            this.setState({
+                isAuthenticated: true
+            });
         }
         // $(window).on('storage',() => {
         //     if(localStorage.getItem('access-token')) {
@@ -62,19 +64,19 @@ class Navbar extends React.Component<IProps, IState> {
     }
 
     public logout() {
-		localStorage.setItem("token", "");
-		localStorage.clear();
-		this.setState({
-			isAuthenticated: false
-		});
-	}
+        localStorage.setItem("token", "");
+        localStorage.clear();
+        this.setState({
+            isAuthenticated: false
+        });
+    }
 
     public render() {
         const { classes } = this.props;
         return (
             <div className="navbar">
                 <AppBar position="static">
-                    <Toolbar>
+                    <Toolbar variant="dense">
                         <IconButton
                             className={classes.menuButton}
                             color="inherit"
@@ -82,19 +84,50 @@ class Navbar extends React.Component<IProps, IState> {
                         >
                             <MenuIcon />
                         </IconButton>
-                        <Typography
-                            variant="title"
-                            color="inherit"
-                            className={classes.flex}
-                        >
-                            <NavLink
-                                style={{ textDecoration: "none", color: "blue" }}
-                                activeClassName="active"
-                                to="/"
+
+                        {!this.state.isAuthenticated && (
+                            <Typography
+                                variant="title"
+                                color="inherit"
+                                className={classes.flex}
                             >
-                                Hexerent
-              </NavLink>
-                        </Typography>
+                                <NavLink
+                                    style={{ textDecoration: "none", color: "blue" }}
+                                    activeClassName="active"
+                                    to="/"
+                                >
+                                    Hexerent
+                </NavLink>
+                            </Typography>
+                        )}
+                        {this.state.isAuthenticated && (
+                            <Typography
+                                variant="title"
+                                color="inherit"
+                                className={classes.flex}
+                            >
+                                <NavLink
+                                    style={{ textDecoration: "none", color: "blue" }}
+                                    activeClassName="active"
+                                    to="/home"
+                                >
+                                    Hexerent
+                </NavLink>
+                            </Typography>
+                        )}
+                        <div className={classes.grow} />
+                        <div className={classes.search}>
+                            <div className={classes.searchIcon}>
+                                <SearchIcon />
+                            </div>
+                            <InputBase
+                                placeholder="Search…"
+                                classes={{
+                                    root: classes.inputRoot,
+                                    input: classes.inputInput
+                                }}
+                            />
+                        </div>
                         {this.state.isAuthenticated && (
                             <NavLink
                                 style={{ textDecoration: "none", color: "white" }}
@@ -141,10 +174,7 @@ class Navbar extends React.Component<IProps, IState> {
                             </NavLink>
                         )}
                         {this.state.isAuthenticated && (
-                            <NavLink
-                                style={{ textDecoration: "none", color: "blue" }}
-                                to="/"
-                            >
+                            <NavLink style={{ textDecoration: "none", color: "blue" }} to="/">
                                 <Button
                                     style={{ textDecoration: "none", color: "blue" }}
                                     color="secondary"
@@ -164,4 +194,4 @@ class Navbar extends React.Component<IProps, IState> {
 export default connect(
     mapStateToProps,
     null
-)(withStyles(styles, { withTheme: true })(Navbar));
+)(withStyles(styles as any, { withTheme: true })(Navbar));

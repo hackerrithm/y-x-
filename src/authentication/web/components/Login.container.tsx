@@ -5,7 +5,6 @@ import * as React from "react";
 import { IProps, IState } from "./types";
 import {withRouter} from "react-router-dom";
 import { log } from "util";
-
 class LoginContainer extends React.Component<IProps, IState> {
     public username: string = '';
     public password: string = '';
@@ -37,7 +36,7 @@ class LoginContainer extends React.Component<IProps, IState> {
             this.state.username as string,
             this.state.password as string
         );
-    };
+    }
 
     public onChange = (event?: any): any => {
         this.validate();
@@ -50,9 +49,9 @@ class LoginContainer extends React.Component<IProps, IState> {
         } else {
             this.password = event.currentTarget.value;
         }
-    };
+    }
 
-    public validate = (): any => {
+    public validate = (): void => {
         if (!this.state.username || this.state.username.length < 3 || !localStorage.getItem('token')) {
             this.setState({
                 usernameError: "Username is too short"
@@ -72,7 +71,7 @@ class LoginContainer extends React.Component<IProps, IState> {
                 passwordError: undefined
             });
         }
-    };
+    }
 
 	public render() {
 		return <Login authenticate={this.login} classes={this.props.classes} onChange={this.onChange} username={this.username} password={this.password} />;
