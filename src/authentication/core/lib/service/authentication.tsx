@@ -8,11 +8,13 @@ export namespace Authentication {
             body: JSON.stringify({ username, password })
         };
     
-        return await fetch(`http://localhost:7002/auth/login`, requestOptions)
+        return await fetch(`http://localhost:7003/auth/login`, requestOptions)
             .then(res => res.json())
             .then((res: any) => {
-                log(JSON.stringify(res, null, 4));
-                localStorage.setItem("token", res as string);
+                log(JSON.stringify(res, null, 4) + ' ------------------------ RES');
+                localStorage.setItem("token", res);
+            }).catch((e) => {
+                log(e + " incorrect stuff")
             });
     };
     

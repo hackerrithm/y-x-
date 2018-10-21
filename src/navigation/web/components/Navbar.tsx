@@ -98,13 +98,13 @@ class Navbar extends React.Component<IProps, IState> {
                         {this.state.isAuthenticated && (
                             <NavLink
                                 style={{ textDecoration: "none", color: "white" }}
-                                to="/tools"
+                                to="/dashboard"
                             >
                                 <Button
                                     style={{ textDecoration: "none", color: "blue" }}
                                     color="secondary"
                                 >
-                                    Tools
+                                    Dashboard
                 </Button>
                             </NavLink>
                         )}
