@@ -75,7 +75,7 @@ class Navbar extends React.Component<IProps, IState> {
         const { classes } = this.props;
         return (
             <div className="navbar">
-                <AppBar position="static">
+                <AppBar position="sticky" >
                     <Toolbar variant="dense">
                         <IconButton
                             className={classes.menuButton}
@@ -96,7 +96,7 @@ class Navbar extends React.Component<IProps, IState> {
                                     activeClassName="active"
                                     to="/"
                                 >
-                                    Hexerent
+                                    [xy|z]
                 </NavLink>
                             </Typography>
                         )}
@@ -111,7 +111,7 @@ class Navbar extends React.Component<IProps, IState> {
                                     activeClassName="active"
                                     to="/home"
                                 >
-                                    Hexerent
+                                    [xy|z]
                 </NavLink>
                             </Typography>
                         )}

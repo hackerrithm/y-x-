@@ -22,13 +22,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import IconButton from "@material-ui/core/IconButton";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import classnames from 'classnames';
-import image from './iron-image-small.jpg';
-/**
- * The example data is structured as follows:
- *
- * import image from 'path/to/image.jpg';
- * [etc...]
- * */
+
 const tileData = [
     {
         img: "https://www.wissenschaft-aktuell.de/onTEAM/fotos/221368551775.jpg",
@@ -99,17 +93,18 @@ function SingleLineGridList(props: any) {
 }
 class ListFeed extends React.Component<any, any> {
     constructor(props: any) {
-        super(props)
-    }
-    state = { expanded: false };
+        super(props);
 
-    handleExpandClick = () => {
+        this.state = { expanded: false };
+    }
+    
+
+    public handleExpandClick = () => {
         this.setState((state: any) => ({ expanded: !state.expanded }));
     };
 
-    render() {
+    public render() {
         const { classes } = this.props;
-        const cardImage = 'https://cdn.shopify.com/s/files/1/1519/8910/products/PS_Dice_PocketDeveloper-3.jpg?v=1527332549'; 
         const jar = ["1", "2", "3"];
 
         return (
@@ -138,7 +133,7 @@ class ListFeed extends React.Component<any, any> {
                                             />
                                             <CardMedia
                                                 className={classes.media}
-                                                image={'../../../../assets/imagecard.jpg'}
+                                                image={'https://www.wissenschaft-aktuell.de/onTEAM/fotos/221368551775.jpg'}
                                                 title="Contemplative Reptile"
                                             />
                                             <CardContent>
@@ -147,7 +142,7 @@ class ListFeed extends React.Component<any, any> {
                                                     guests. Add 1 cup of frozen peas along with the mussels, if you like.
           </Typography>
                                             </CardContent>
-                                            <CardActions className={classes.actions} disableActionSpacing>
+                                            <CardActions className={classes.actions} disableActionSpacing={true}>
                                                 <IconButton aria-label="Add to favorites">
                                                     <FavoriteIcon />
                                                 </IconButton>
@@ -165,14 +160,14 @@ class ListFeed extends React.Component<any, any> {
                                                     <ExpandMoreIcon />
                                                 </IconButton>
                                             </CardActions>
-                                            <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+                                            <Collapse in={this.state.expanded} timeout="auto" unmountOnExit={true}>
                                                 <CardContent>
-                                                    <Typography paragraph>Method:</Typography>
-                                                    <Typography paragraph>
+                                                    <Typography paragraph={true}>Method:</Typography>
+                                                    <Typography paragraph={true}>
                                                         Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
                                                         minutes.
             </Typography>
-                                                    <Typography paragraph>
+                                                    <Typography paragraph={true}>
                                                         Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
                                                         heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
                                                         browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving
@@ -180,7 +175,7 @@ class ListFeed extends React.Component<any, any> {
                                                         salt and pepper, and cook, stirring often until thickened and fragrant, about 10
                                                         minutes. Add saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
             </Typography>
-                                                    <Typography paragraph>
+                                                    <Typography paragraph={true}>
                                                         Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
                                                         without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat
                                                         to medium-low, add reserved shrimp and mussels, tucking them down into the rice, and
