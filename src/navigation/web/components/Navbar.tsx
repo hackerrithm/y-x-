@@ -75,7 +75,7 @@ class Navbar extends React.Component<IProps, IState> {
         const { classes } = this.props;
         return (
             <div className="navbar">
-                <AppBar position="sticky" >
+                <AppBar position="sticky">
                     <Toolbar variant="dense">
                         <IconButton
                             className={classes.menuButton}

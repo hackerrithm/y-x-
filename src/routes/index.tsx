@@ -8,16 +8,18 @@ import Authenticate from "src/authentication/web/components/Authenticate";
 import Dashboard from "src/dashboard/web/components/Dashboard";
 import About from "src/about/web/components/About";
 import LoginContainer from "src/authentication/web/components/Login.container";
+import SignUpContainer from "src/authentication/web/components/SignUp.container";
 
 export default class AppRouter extends React.Component {
     public render() {
         return (
             <React.Fragment>
-                <HashRouter>
+                <HashRouter basename="awesome.xyz" hashType="hashbang">
                     <div className="container-fluid">
                         <Route component={App} />
                         <Switch>
                             <Route exact={true} path="/" component={Start} />
+                            <Route path="/signup" component={SignUpContainer} />
                             <Route path="/login" component={LoginContainer} />
                             <Route path="/about" component={About} />
                             <Route path="/dashboard" component={Authenticate(Dashboard)} />

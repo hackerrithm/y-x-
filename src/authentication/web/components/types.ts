@@ -13,9 +13,15 @@ export interface IProps extends IDefaultProps {
     isLoggedIn: any;
     loginHasError: any;
     login: (a: any, b: any) => Promise<any>;
+    signup: (a: any, b: any, c: any, d:any) => Promise<any>;
+
 }
 
 export interface IState {
+    firstname?: string;
+    firstnameError?: string;
+    lastname?: string;
+    lastnameError?: string;
     username?: string;
     usernameError?: string;
     password?: string;
@@ -30,4 +36,4 @@ export type StateProps = Pick<
     "history" | "navigate" | "theme" | "classes" | "isLoggedIn" | "loginHasError"
     >;
 export type OwnProps = Pick<IProps, "id">;
-export type DispatchProps = Pick<IProps, "login">;
+export type DispatchProps = Pick<IProps, "login" | "signup">;

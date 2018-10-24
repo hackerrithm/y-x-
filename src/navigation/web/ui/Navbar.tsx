@@ -1,6 +1,5 @@
 import spacing from "@material-ui/core/styles/spacing";
 import { fade } from "@material-ui/core/styles/colorManipulator";
-import color from "@material-ui/core/colors/deepPurple";
 
 export const styles = (theme: any) => ({
     flex: {
@@ -24,9 +23,9 @@ export const styles = (theme: any) => ({
     search: {
         position: "relative",
         borderRadius: theme.shape.borderRadius,
-        backgroundColor: "#2C7CFF",//fade(theme.palette.common.white, 0.15),
+        backgroundColor: fade('#0080ff', 0.95), 
         "&:hover": {
-            backgroundColor: "#2C7CFF",//fade(theme.palette.common.white, 0.25)
+            backgroundColor: fade('#0080ff', 0.95)
         },
         marginLeft: 0,
         width: "100%",

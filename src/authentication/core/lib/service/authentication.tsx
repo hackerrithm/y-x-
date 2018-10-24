@@ -11,6 +11,18 @@ export namespace Authentication {
             .post(`http://localhost:7003/auth/login`, JSON.stringify(data))
     };
 
+    export const signup = async (username: string, password: string, firstname: string, lastname: string) => {
+        const data = {
+            username,
+            password,
+            firstname,
+            lastname
+        };
+
+        return await axios
+            .post(`http://localhost:7003/auth/signup`, JSON.stringify(data))
+    };
+
     export const logout = () => {
         localStorage.removeItem("token");
     };

@@ -98,7 +98,7 @@ class Start extends React.Component<any, any> {
         return (
             <div key={"start-page"} className="container">
                 <section>
-                    <video id="background-video" loop autoPlay width="100%">
+                    <video id="background-video" loop={true} muted={true} autoPlay={true} width="100%">
                         <source src={this.state.videoURL} type="video/mp4" />
                         <source src={this.state.videoURL} type="video/ogg" />
                         Your browser does not support the video tag.
@@ -111,22 +111,16 @@ class Start extends React.Component<any, any> {
                 <section />
                 <section>
                 <Grid container={true} alignItems={"center"}>
-                    <Grid item={true} sm={4}>
-                    </Grid>
-                    <Grid item={true} xs={12} sm={4}>
-                        <div key={1}>
-
-                        </div>
-                        </Grid>
-                    <Grid item={true} sm={4}>
-                    </Grid>
+                    <Grid item={true} sm={4}/>
+                    <Grid item={true} xs={12} sm={4}/>
+                    <Grid item={true} sm={4}/>
 </Grid>
                 </section>
                 <section>
                     <BottomNavigation
                         value={value}
                         onChange={this.handleChange}
-                        showLabels
+                        showLabels={true}
                         className={classes.root}
                     >
                         <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
