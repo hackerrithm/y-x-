@@ -1,28 +1,29 @@
-import { log } from "util";
+import axios from "axios";
 
 export namespace Authentication {
     export const login = async (username: string, password: string) => {
-        const requestOptions = {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password })
+        const data = {
+            username,
+            password
         };
-    
-        return await fetch(`http://localhost:7002/auth/login`, requestOptions)
-            .then(res => res.json())
-            .then((res: any) => {
-                log(JSON.stringify(res, null, 4));
-                localStorage.setItem("token", res as string);
-            });
+
+        return await axios
+            .post(`http://localhost:7003/auth/login`, JSON.stringify(data))
     };
-    
+
+    export const signup = async (username: string, password: string, firstname: string, lastname: string) => {
+        const data = {
+            username,
+            password,
+            firstname,
+            lastname
+        };
+
+        return await axios
+            .post(`http://localhost:7003/auth/signup`, JSON.stringify(data))
+    };
+
     export const logout = () => {
         localStorage.removeItem("token");
     };
 }
-
-
-//  const userService = {
-//     login,
-//     logout,
-// };

@@ -1,37 +1,28 @@
 import * as React from "react";
 import { Route, Switch, HashRouter } from "react-router-dom";
 import { default as App } from "../app";
-import Login from "src/authentication/web/components/Login";
+// import Login from "src/authentication/web/components/Login";
 import Start from "src/start/web/components/Start";
 import Home from "src/home/web/components/Home";
 import Authenticate from "src/authentication/web/components/Authenticate";
-
-// const PrivateRoute = ({ component: Component, ...rest }: any) => {
-//     return (
-//         <Route
-//             {...rest}
-//             public render={(props: any) => {
-//                 props.isLoggedIn === true ? (
-//                     <Component {...props} />
-//                 ) : (
-//                         <Redirect to="/login" />
-//                     );
-//             }}
-//         />
-//     );
-// };
+import Dashboard from "src/dashboard/web/components/Dashboard";
+import About from "src/about/web/components/About";
+import LoginContainer from "src/authentication/web/components/Login.container";
+import SignUpContainer from "src/authentication/web/components/SignUp.container";
 
 export default class AppRouter extends React.Component {
     public render() {
         return (
             <React.Fragment>
-                <HashRouter>
+                <HashRouter basename="awesome.xyz" hashType="hashbang">
                     <div className="container-fluid">
                         <Route component={App} />
                         <Switch>
                             <Route exact={true} path="/" component={Start} />
-                            <Route path="/login" component={Login} />
-                            {/* <Route path="/home" component={Home} /> */}
+                            <Route path="/signup" component={SignUpContainer} />
+                            <Route path="/login" component={LoginContainer} />
+                            <Route path="/about" component={About} />
+                            <Route path="/dashboard" component={Authenticate(Dashboard)} />
                             <Route path="/home" component={Authenticate(Home)} />
                         </Switch>
                     </div>

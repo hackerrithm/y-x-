@@ -1,5 +1,6 @@
 import * as ActionTypes from "./types";
 import { Authentication } from "../../service/authentication";
+import { log } from "util";
 
 const isLoggedIn = (bool: any) => {
     return {
@@ -22,8 +23,8 @@ const loginIsLoading = (bool: any) => {
     };
 };
 
-const login = (username: string, password: string): any => {
-    return (dispatch: any) => {
+const login = (username: any, password: any): any => {
+    return async (dispatch: any) => {
         dispatch(loginIsLoading(true));
 
         if (!username || !password) {
@@ -33,10 +34,40 @@ const login = (username: string, password: string): any => {
             return;
         }
 
-        Authentication
-            .login(username, password)
+        Authentication.login(username, password)
             .then((res: any) => {
-                dispatch(isLoggedIn(true));
+                if (res.data !== null && res.data !== undefined && res.data != null) {
+                    localStorage.setItem("token", res.data);
+                    dispatch(isLoggedIn(true));
+                }
+                dispatch(isLoggedIn(false));
+            })
+            .catch((e: any) => {
+                dispatch(loginHasError(true));
+                Error("An error occurred while loading image. error code:" + e);
+            });
+    };
+};
+
+const signup = (username: any, password: any, firtsname: any, lastname: any): any => {
+    return async (dispatch: any) => {
+        dispatch(loginIsLoading(true));
+
+        if (!username || !password || !firtsname || !lastname) {
+            dispatch(loginHasError(true));
+            dispatch(loginIsLoading(false));
+
+            return;
+        }
+
+        Authentication.signup(username, password, firtsname, lastname)
+            .then((res: any) => {
+                if (res.data !== null && res.data !== undefined && res.data != null) {
+                    log("sign up called")
+                    localStorage.setItem("token", res.data);
+                    dispatch(isLoggedIn(true));
+                }
+                dispatch(isLoggedIn(false));
             })
             .catch((e: any) => {
                 dispatch(loginHasError(true));
@@ -54,6 +85,7 @@ const logout = () => {
 
 export default {
     login,
+    signup,
     isLoggedIn,
     loginHasError,
     loginIsLoading,
