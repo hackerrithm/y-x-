@@ -9,6 +9,7 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import RestoreIcon from "@material-ui/icons/Restore";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
+import SignUpContainer from "src/authentication/web/components/SignUp.container";
 
 class SubscriptionForm extends React.PureComponent {
     public email: any;
@@ -65,14 +66,15 @@ class SubscriptionForm extends React.PureComponent {
     }
 }
 
-class Start extends React.Component<any, any> {
-    constructor(props: any) {
+class Start extends React.Component<any, any, any> {
+    public constructor(props: any) {
         super(props);
         this.state = {
             emailAddress: "",
             videoURL: [
                 "https://d15iertza0f11s.cloudfront.net/app/uploads/2018/08/16110122/SoE_Master_NEWVERSION_HELENA_2.mp4"
             ],
+            value: 0
             // videoURL: [
             //     {
             //         u1:
@@ -84,7 +86,6 @@ class Start extends React.Component<any, any> {
             //     }
             // ]
             // "https://veritystudios.cdn.prismic.io/veritystudios%2F3074e329-d882-4db8-ac02-9dfc40b586dc_drake_website_loop-low.mp4"
-            value: 0
         };
     }
 
@@ -107,6 +108,12 @@ class Start extends React.Component<any, any> {
                 <section />
                 <BigPicture />
                 <section />
+                {/* <section>
+                    <LoginContainer {...this.context}/>
+                </section> */}
+                <section>
+                    <SignUpContainer {...this.context}/>
+                </section>
                 <SubscriptionForm />
                 <section />
                 <section>

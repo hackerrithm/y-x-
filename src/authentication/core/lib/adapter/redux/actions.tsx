@@ -37,7 +37,7 @@ const login = (username: any, password: any): any => {
         Authentication.login(username, password)
             .then((res: any) => {
                 if (res.data !== null && res.data !== undefined && res.data != null) {
-                    localStorage.setItem("token", res.data);
+                    localStorage.setItem("user", JSON.stringify(res.data));
                     dispatch(isLoggedIn(true));
                 }
                 dispatch(isLoggedIn(false));
@@ -64,7 +64,7 @@ const signup = (username: any, password: any, firtsname: any, lastname: any): an
             .then((res: any) => {
                 if (res.data !== null && res.data !== undefined && res.data != null) {
                     log("sign up called")
-                    localStorage.setItem("token", res.data);
+                    localStorage.setItem("user", JSON.stringify(res.data));
                     dispatch(isLoggedIn(true));
                 }
                 dispatch(isLoggedIn(false));
@@ -77,7 +77,7 @@ const signup = (username: any, password: any, firtsname: any, lastname: any): an
 };
 
 const logout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     return {
         type: ActionTypes.LOGOUT
     };

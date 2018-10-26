@@ -22,6 +22,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import IconButton from "@material-ui/core/IconButton";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import classnames from 'classnames';
+import { log } from "util";
 
 const tileData = [
     {
@@ -200,9 +201,49 @@ class ListFeed extends React.Component<any, any> {
     }
 }
 
+
+
+
 class Home extends React.Component<any, any> {
+    public retrievedObject: any;
     public constructor(props: any) {
         super(props);
+
+        this.state = {
+            userVal: ''
+        }
+    }
+
+    public generateElement = (key: any,value: any) => {
+        return (
+          <div key={key} className="row">
+            <div className="col-xs-6 ins-label">{key}</div>
+            <div className="col-xs-6">{value}</div>
+          </div>
+        );
+      }
+      
+
+    public generateData = (data :any) => {
+        const newData = Object.keys(data).reduce((result: any, currentKey: any) => {
+            if (typeof data[currentKey] === 'string' || data[currentKey] instanceof String) {
+              const elementToPush = this.generateElement(currentKey, data[currentKey]);
+              result.push(elementToPush);
+            } else {
+              const nested = this.generateData(data[currentKey]);
+              result.push(...nested);
+            }
+            return result;
+          }, []);
+          return newData;
+      }
+    
+    public async componentDidMount() {
+        this.retrievedObject = await localStorage.getItem('user') as Object;
+
+        log('retrievedObject: ' + JSON.stringify(this.retrievedObject, null, 4))  
+        
+        this.setState({ userVal: this.retrievedObject })
     }
 
     public render() {
@@ -210,6 +251,8 @@ class Home extends React.Component<any, any> {
             <div>
                 <section>
                     <SingleLineGridList {...this.props} />
+                {/* <pre>this: {this.generateData(this.state.userVal)}</pre> */}
+
                 </section>
                 <section>
                     <ListFeed {...this.props} />

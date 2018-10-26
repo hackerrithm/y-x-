@@ -17,8 +17,8 @@ import { styles } from "../ui/Navbar";
 import { connect } from "react-redux";
 
 export interface IProps {
-    classes: any;
-    isLoggedIn: any;
+    readonly classes: any;
+    readonly isLoggedIn: any;
 }
 
 export interface IState {
@@ -32,7 +32,7 @@ const mapStateToProps = (state: any) => {
 };
 
 class Navbar extends React.Component<IProps, IState> {
-    constructor(props: IProps) {
+    public constructor(props: IProps) {
         super(props);
 
         this.state = {
@@ -48,9 +48,9 @@ class Navbar extends React.Component<IProps, IState> {
 
     public checkAuthenticationStatus() {
         if (
-            localStorage.getItem("token") !== null &&
-            localStorage.getItem("token") !== undefined &&
-            localStorage.getItem("token")
+            localStorage.getItem("user") !== null &&
+            localStorage.getItem("user") !== undefined &&
+            localStorage.getItem("user")
         ) {
             this.setState({
                 isAuthenticated: true
@@ -64,7 +64,7 @@ class Navbar extends React.Component<IProps, IState> {
     }
 
     public logout() {
-        localStorage.setItem("token", "");
+        localStorage.setItem("user", "");
         localStorage.clear();
         this.setState({
             isAuthenticated: false

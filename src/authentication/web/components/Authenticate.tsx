@@ -13,7 +13,7 @@ export default function(ComposedComponent: any) {
         }
     
         public componentWillMount() {
-            if (!localStorage.getItem("token")) {
+            if (!localStorage.getItem("user")) {
                 log('needs to be logged in')
                 this.props.history.push("/login");                
             }

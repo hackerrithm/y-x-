@@ -23,9 +23,9 @@ export const styles = (theme: any) => ({
     search: {
         position: "relative",
         borderRadius: theme.shape.borderRadius,
-        backgroundColor: fade('#0080ff', 0.95), 
+        backgroundColor: fade('#6c00af', 0.95), 
         "&:hover": {
-            backgroundColor: fade('#0080ff', 0.95)
+            backgroundColor: fade('#6c00af', 0.95)
         },
         marginLeft: 0,
         width: "100%",
@@ -56,7 +56,7 @@ export const styles = (theme: any) => ({
         transition: theme.transitions.create("width"),
         width: "100%",
         [theme.breakpoints.up("sm")]: {
-            width: 120,
+            width: '100%',
             "&:focus": {
                 width: 800
             }

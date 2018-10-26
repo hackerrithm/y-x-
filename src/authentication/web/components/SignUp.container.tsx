@@ -65,7 +65,7 @@ class SignUpContainer extends React.Component<IProps, IState> {
     }
 
     public validate = (): void => {
-        if (!this.state.username || this.state.username.length < 3 || !localStorage.getItem('token')) {
+        if (!this.state.username || this.state.username.length < 3 || !localStorage.getItem('user')) {
             this.setState({
                 usernameError: "Username is too short"
             });
@@ -75,7 +75,7 @@ class SignUpContainer extends React.Component<IProps, IState> {
             });
         }
 
-        if (!this.state.password || this.state.password.length < 3 || !localStorage.getItem('token')) {
+        if (!this.state.password || this.state.password.length < 3 || !localStorage.getItem('user')) {
             this.setState({
                 passwordError: "Password is too short"
             });
@@ -90,6 +90,7 @@ class SignUpContainer extends React.Component<IProps, IState> {
 		return <SignUp authenticate={this.signup} classes={this.props.classes} onChange={this.onChange} firstname={this.firstname} lastname={this.lastname} username={this.username} password={this.password} />;
 	}
 }
+
 const mapDispatchToProps = (dispatch: any) => {
     return {
         signup: (username: any, password: any, firstname: any, lastname: any) =>
