@@ -11,17 +11,10 @@ export const styles: any = (theme: any) => ({
     card: {
         maxWidth: 400
     },
-    appBarSpacer: theme.mixins.toolbar,
     media: {
         height: 0,
         paddingTop: "56.25%", // 16:9,
         marginTop: "30"
-    },
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing.unit * 3,
-        height: "100vh",
-        overflow: "auto"
     },
     actions: {
         display: "flex"

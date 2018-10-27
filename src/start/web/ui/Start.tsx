@@ -1,16 +1,11 @@
 import { red } from "@material-ui/core/colors";
 
 export const styles = (theme: any) => ({
-    card: {
-        maxWidth: 400,
-        top: 700
-    },
-    cardDiv: {
-        maxWidth: 400,
-        padding: 15,
-        right: 0,
-        top: 0
-    },
+    // bigText: {
+    //     position: "relative",
+    //     "&:hover": {
+           
+    //     },
     bgImage: {
         height: 910,
         maxWidth: "100%",
@@ -86,5 +81,34 @@ export const styles = (theme: any) => ({
     },
     bootstrapFormLabel: {
         fontSize: 18
+    },
+    layout: {
+        width: "auto",
+        marginLeft: theme.spacing.unit * 3,
+        marginRight: theme.spacing.unit * 3,
+        [theme.breakpoints.up(900 + theme.spacing.unit * 3 * 2)]: {
+            width: 900,
+            marginLeft: "auto",
+            marginRight: "auto"
+        }
+    },
+    heroContent: {
+        maxWidth: 600,
+        margin: "0 auto",
+        padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`
+    },
+    cardHeader: {
+        backgroundColor: theme.palette.grey[200]
+    },
+    cardPricing: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "baseline",
+        marginBottom: theme.spacing.unit * 2
+    },
+    cardActions: {
+        [theme.breakpoints.up("sm")]: {
+            paddingBottom: theme.spacing.unit * 2
+        }
     }
 });

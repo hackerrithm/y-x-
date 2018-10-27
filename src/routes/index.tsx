@@ -9,6 +9,8 @@ import Dashboard from "src/dashboard/web/components/Dashboard";
 import About from "src/about/web/components/About";
 import LoginContainer from "src/authentication/web/components/Login.container";
 import SignUpContainer from "src/authentication/web/components/SignUp.container";
+import Profile from "src/profile/web/components/Profile";
+import Setting from "src/settings/web/components/Setting";
 
 export default class AppRouter extends React.Component {
     public render() {
@@ -24,6 +26,8 @@ export default class AppRouter extends React.Component {
                             <Route path="/about" component={About} />
                             <Route path="/dashboard" component={Authenticate(Dashboard)} />
                             <Route path="/home" component={Authenticate(Home)} />
+                            <Route path="/profile" component={Authenticate(Profile)} />
+                            <Route path="/settings" component={Authenticate(Setting)} />
                         </Switch>
                     </div>
                 </HashRouter>

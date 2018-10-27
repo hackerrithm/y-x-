@@ -3,7 +3,7 @@ import {
     Button,
     IconButton,
     Toolbar,
-    Typography
+    Typography,
 } from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { default as MenuIcon } from "@material-ui/icons/Menu";
@@ -15,6 +15,7 @@ import { NavLink } from "react-router-dom";
 import * as React from "react";
 import { styles } from "../ui/Navbar";
 import { connect } from "react-redux";
+import * as classNames from "classnames";
 
 export interface IProps {
     readonly classes: any;
@@ -23,6 +24,7 @@ export interface IProps {
 
 export interface IState {
     isAuthenticated: boolean;
+    open: boolean;
 }
 
 const mapStateToProps = (state: any) => {
@@ -36,7 +38,8 @@ class Navbar extends React.Component<IProps, IState> {
         super(props);
 
         this.state = {
-            isAuthenticated: false
+            isAuthenticated: false,
+            open: true
         };
 
         this.logout = this.logout.bind(this);
@@ -71,122 +74,177 @@ class Navbar extends React.Component<IProps, IState> {
         });
     }
 
+    public handleDrawerOpen = () => {
+        this.setState({ open: true });
+    };
+
+    public handleDrawerClose = () => {
+        this.setState({ open: false });
+    };
+
     public render() {
         const { classes } = this.props;
         return (
-            <div className="navbar">
-                <AppBar position="sticky">
-                    <Toolbar variant="dense">
-                        <IconButton
+            <React.Fragment>
+                
+                <div className="navbar">
+                    <AppBar position="sticky">
+                        <Toolbar
+                            variant="dense"
+                            disableGutters={!this.state.open}
+                            className={classes.toolbar}
+                        >
+                            {/* <IconButton
                             className={classes.menuButton}
                             color="inherit"
                             aria-label="Menu"
                         >
                             <MenuIcon />
-                        </IconButton>
-
-                        {!this.state.isAuthenticated && (
-                            <Typography
-                                variant="title"
+                        </IconButton> */}
+                            <IconButton
                                 color="inherit"
-                                className={classes.flex}
+                                aria-label="Open drawer"
+                                onClick={this.handleDrawerOpen}
+                                className={classNames(
+                                    classes.menuButton,
+                                    this.state.open && classes.menuButtonHidden
+                                )}
                             >
+                                <MenuIcon />
+                            </IconButton>
+
+                            {!this.state.isAuthenticated && (
+                                <Typography
+                                    variant="title"
+                                    color="inherit"
+                                    className={classes.flex}
+                                >
+                                    <NavLink
+                                        style={{ textDecoration: "none", color: "blue" }}
+                                        activeClassName="active"
+                                        to="/"
+                                    >
+                                        [xy|z]
+                  </NavLink>
+                                </Typography>
+                            )}
+                            {this.state.isAuthenticated && (
+                                <Typography
+                                    variant="title"
+                                    color="inherit"
+                                    className={classes.flex}
+                                >
+                                    <NavLink
+                                        style={{ textDecoration: "none", color: "blue" }}
+                                        activeClassName="active"
+                                        to="/home"
+                                    >
+                                        [xy|z]
+                  </NavLink>
+                                </Typography>
+                            )}
+                            <div className={classes.grow} />
+                            <div className={classes.search}>
+                                <div className={classes.searchIcon}>
+                                    <SearchIcon />
+                                </div>
+                                <InputBase
+                                    placeholder="Search…"
+                                    classes={{
+                                        root: classes.inputRoot,
+                                        input: classes.inputInput
+                                    }}
+                                />
+                            </div>
+                            {this.state.isAuthenticated && (
+                                <NavLink
+                                    style={{ textDecoration: "none", color: "white" }}
+                                    to="/dashboard"
+                                >
+                                    <Button
+                                        style={{ textDecoration: "none", color: "blue" }}
+                                        color="secondary"
+                                    >
+                                        Dashboard
+                  </Button>
+                                </NavLink>
+                            )}
+                            {this.state.isAuthenticated && (
+                                <NavLink
+                                    style={{ textDecoration: "none", color: "white" }}
+                                    to="/profile"
+                                >
+                                    <Button
+                                        style={{ textDecoration: "none", color: "blue" }}
+                                        color="secondary"
+                                    >
+                                        Profile
+                  </Button>
+                                </NavLink>
+                            )}
+                            {this.state.isAuthenticated && (
+                                <NavLink
+                                    style={{ textDecoration: "none", color: "white" }}
+                                    to="/settings"
+                                >
+                                    <Button
+                                        style={{ textDecoration: "none", color: "blue" }}
+                                        color="secondary"
+                                    >
+                                        Settings
+                  </Button>
+                                </NavLink>
+                            )}
+                            <NavLink
+                                style={{ textDecoration: "none", color: "blue" }}
+                                to="/about"
+                            >
+                                <Button color="inherit">About</Button>
+                            </NavLink>
+                            {!this.state.isAuthenticated && (
                                 <NavLink
                                     style={{ textDecoration: "none", color: "blue" }}
-                                    activeClassName="active"
+                                    to="/login"
+                                >
+                                    <Button
+                                        style={{ textDecoration: "none", color: "blue" }}
+                                        color="secondary"
+                                    >
+                                        Login
+                  </Button>
+                                </NavLink>
+                            )}
+                            {!this.state.isAuthenticated && (
+                                <NavLink
+                                    style={{ textDecoration: "none", color: "blue" }}
+                                    to="/signup"
+                                >
+                                    <Button
+                                        style={{ textDecoration: "none", color: "blue" }}
+                                        color="secondary"
+                                    >
+                                        Sign Up
+                  </Button>
+                                </NavLink>
+                            )}
+                            {this.state.isAuthenticated && (
+                                <NavLink
+                                    style={{ textDecoration: "none", color: "blue" }}
                                     to="/"
                                 >
-                                    [xy|z]
-                </NavLink>
-                            </Typography>
-                        )}
-                        {this.state.isAuthenticated && (
-                            <Typography
-                                variant="title"
-                                color="inherit"
-                                className={classes.flex}
-                            >
-                                <NavLink
-                                    style={{ textDecoration: "none", color: "blue" }}
-                                    activeClassName="active"
-                                    to="/home"
-                                >
-                                    [xy|z]
-                </NavLink>
-                            </Typography>
-                        )}
-                        <div className={classes.grow} />
-                        <div className={classes.search}>
-                            <div className={classes.searchIcon}>
-                                <SearchIcon />
-                            </div>
-                            <InputBase
-                                placeholder="Search…"
-                                classes={{
-                                    root: classes.inputRoot,
-                                    input: classes.inputInput
-                                }}
-                            />
-                        </div>
-                        {this.state.isAuthenticated && (
-                            <NavLink
-                                style={{ textDecoration: "none", color: "white" }}
-                                to="/dashboard"
-                            >
-                                <Button
-                                    style={{ textDecoration: "none", color: "blue" }}
-                                    color="secondary"
-                                >
-                                    Dashboard
-                </Button>
-                            </NavLink>
-                        )}
-                        <NavLink
-                            style={{ textDecoration: "none", color: "blue" }}
-                            to="/about"
-                        >
-                            <Button color="inherit">About</Button>
-                        </NavLink>
-                        {!this.state.isAuthenticated && (
-                            <NavLink
-                                style={{ textDecoration: "none", color: "blue" }}
-                                to="/login"
-                            >
-                                <Button
-                                    style={{ textDecoration: "none", color: "blue" }}
-                                    color="secondary"
-                                >
-                                    Login
-                </Button>
-                            </NavLink>
-                        )}
-                        {!this.state.isAuthenticated && (
-                            <NavLink
-                                style={{ textDecoration: "none", color: "blue" }}
-                                to="/signup"
-                            >
-                                <Button
-                                    style={{ textDecoration: "none", color: "blue" }}
-                                    color="secondary"
-                                >
-                                    Sign Up
-                </Button>
-                            </NavLink>
-                        )}
-                        {this.state.isAuthenticated && (
-                            <NavLink style={{ textDecoration: "none", color: "blue" }} to="/">
-                                <Button
-                                    style={{ textDecoration: "none", color: "blue" }}
-                                    color="secondary"
-                                    onClick={this.logout}
-                                >
-                                    Logout
-                </Button>
-                            </NavLink>
-                        )}
-                    </Toolbar>
-                </AppBar>
-            </div>
+                                    <Button
+                                        style={{ textDecoration: "none", color: "blue" }}
+                                        color="secondary"
+                                        onClick={this.logout}
+                                    >
+                                        Logout
+                  </Button>
+                                </NavLink>
+                            )}
+                        </Toolbar>
+                    </AppBar>
+                </div>
+            </React.Fragment>
         );
     }
 }

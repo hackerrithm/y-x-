@@ -1,10 +1,10 @@
-import { connect } from "react-redux";
-import authenticate from "../../core/lib/adapter/redux/actions";
-import Login from "./Login";
-import * as React from "react";
-import { IProps, IState } from "./types";
-import {withRouter} from "react-router-dom";
-import { log } from "util";
+import { connect } from 'react-redux';
+import authenticate from '../../core/lib/adapter/redux/actions';
+import Login from './Login';
+import * as React from 'react';
+import { IProps, IState } from './types';
+import {withRouter} from 'react-router-dom';
+import { log } from 'util';
 class LoginContainer extends React.Component<IProps, IState> {
     public username: string = '';
     public password: string = '';
@@ -24,10 +24,10 @@ class LoginContainer extends React.Component<IProps, IState> {
 
     public componentDidUpdate() {
         if (this.props.isLoggedIn) {
-            this.props.history.push("/home");
+            this.props.history.push('/home');
             window.location.reload();
         } else if (this.props.loginHasError) {
-            this.props.history.push("/");
+            this.props.history.push('/');
         }
     }
     
@@ -54,7 +54,7 @@ class LoginContainer extends React.Component<IProps, IState> {
     public validate = (): void => {
         if (!this.state.username || this.state.username.length < 3 || !localStorage.getItem('user')) {
             this.setState({
-                usernameError: "Username is too short"
+                usernameError: 'Username is too short'
             });
         } else {
             this.setState({
@@ -64,7 +64,7 @@ class LoginContainer extends React.Component<IProps, IState> {
 
         if (!this.state.password || this.state.password.length < 3 || !localStorage.getItem('user')) {
             this.setState({
-                passwordError: "Password is too short"
+                passwordError: 'Password is too short'
             });
         } else {
             this.setState({
