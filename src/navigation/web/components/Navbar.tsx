@@ -4,12 +4,14 @@ import {
     IconButton,
     Toolbar,
     Typography,
+    Menu,
+    MenuItem
 } from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { default as MenuIcon } from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
-
+import AccountCircle from "@material-ui/icons/AccountCircle";
 import { NavLink } from "react-router-dom";
 
 import * as React from "react";
@@ -25,6 +27,7 @@ export interface IProps {
 export interface IState {
     isAuthenticated: boolean;
     open: boolean;
+    anchorEl: any;
 }
 
 const mapStateToProps = (state: any) => {
@@ -39,7 +42,8 @@ class Navbar extends React.Component<IProps, IState> {
 
         this.state = {
             isAuthenticated: false,
-            open: true
+            open: true,
+            anchorEl: null
         };
 
         this.logout = this.logout.bind(this);
@@ -82,13 +86,22 @@ class Navbar extends React.Component<IProps, IState> {
         this.setState({ open: false });
     };
 
+    public handleMenu = (event: any) => {
+        this.setState({ anchorEl: event.currentTarget });
+    };
+
+    public handleClose = () => {
+        this.setState({ anchorEl: null });
+    };
+
     public render() {
         const { classes } = this.props;
+        const { anchorEl } = this.state;
+        const open = Boolean(anchorEl);
+
         return (
-            <React.Fragment>
-                
                 <div className="navbar">
-                    <AppBar position="sticky">
+                    <AppBar position="static">
                         <Toolbar
                             variant="dense"
                             disableGutters={!this.state.open}
@@ -156,64 +169,6 @@ class Navbar extends React.Component<IProps, IState> {
                                     }}
                                 />
                             </div>
-                            {this.state.isAuthenticated && (
-                                <NavLink
-                                    style={{ textDecoration: "none", color: "white" }}
-                                    to="/dashboard"
-                                >
-                                    <Button
-                                        style={{ textDecoration: "none", color: "blue" }}
-                                        color="secondary"
-                                    >
-                                        Dashboard
-                  </Button>
-                                </NavLink>
-                            )}
-                            {this.state.isAuthenticated && (
-                                <NavLink
-                                    style={{ textDecoration: "none", color: "white" }}
-                                    to="/profile"
-                                >
-                                    <Button
-                                        style={{ textDecoration: "none", color: "blue" }}
-                                        color="secondary"
-                                    >
-                                        Profile
-                  </Button>
-                                </NavLink>
-                            )}
-                            {this.state.isAuthenticated && (
-                                <NavLink
-                                    style={{ textDecoration: "none", color: "white" }}
-                                    to="/settings"
-                                >
-                                    <Button
-                                        style={{ textDecoration: "none", color: "blue" }}
-                                        color="secondary"
-                                    >
-                                        Settings
-                  </Button>
-                                </NavLink>
-                            )}
-                            <NavLink
-                                style={{ textDecoration: "none", color: "blue" }}
-                                to="/about"
-                            >
-                                <Button color="inherit">About</Button>
-                            </NavLink>
-                            {!this.state.isAuthenticated && (
-                                <NavLink
-                                    style={{ textDecoration: "none", color: "blue" }}
-                                    to="/login"
-                                >
-                                    <Button
-                                        style={{ textDecoration: "none", color: "blue" }}
-                                        color="secondary"
-                                    >
-                                        Login
-                  </Button>
-                                </NavLink>
-                            )}
                             {!this.state.isAuthenticated && (
                                 <NavLink
                                     style={{ textDecoration: "none", color: "blue" }}
@@ -227,24 +182,111 @@ class Navbar extends React.Component<IProps, IState> {
                   </Button>
                                 </NavLink>
                             )}
-                            {this.state.isAuthenticated && (
+                            {!this.state.isAuthenticated && (
                                 <NavLink
                                     style={{ textDecoration: "none", color: "blue" }}
-                                    to="/"
+                                    to="/login"
                                 >
                                     <Button
                                         style={{ textDecoration: "none", color: "blue" }}
                                         color="secondary"
-                                        onClick={this.logout}
+                                        variant="outlined"
                                     >
-                                        Logout
+                                        Login
                   </Button>
                                 </NavLink>
+                            )}
+                            {this.state.isAuthenticated && (
+                                <div>
+                                    <IconButton
+                                        aria-owns={open ? "menu-appbar" : undefined}
+                                        aria-haspopup="true"
+                                        onClick={this.handleMenu}
+                                        color="inherit"
+                                    >
+                                        <AccountCircle />
+                                    </IconButton>
+                                    <Menu
+                                        id="menu-appbar"
+                                        anchorEl={anchorEl}
+                                        anchorOrigin={{
+                                            vertical: "top",
+                                            horizontal: "right"
+                                        }}
+                                        transformOrigin={{
+                                            vertical: "top",
+                                            horizontal: "right"
+                                        }}
+                                        open={open}
+                                        onClose={this.handleClose}
+                                    >
+                                        <MenuItem onClick={this.handleClose}>
+                                            <NavLink
+                                                style={{ textDecoration: "none", color: "white" }}
+                                                to="/dashboard"
+                                            >
+                                                <Button
+                                                    style={{ textDecoration: "none", color: "blue" }}
+                                                    color="secondary"
+                                                >
+                                                    Dashboard
+                        </Button>
+                                            </NavLink>
+                                        </MenuItem>
+                                        <MenuItem onClick={this.handleClose}>
+                                            <NavLink
+                                                style={{ textDecoration: "none", color: "white" }}
+                                                to="/settings"
+                                            >
+                                                <Button
+                                                    style={{ textDecoration: "none", color: "blue" }}
+                                                    color="secondary"
+                                                >
+                                                    Settings
+                        </Button>
+                                            </NavLink>
+                                        </MenuItem>
+                                        <MenuItem onClick={this.handleClose}>
+                                            <NavLink
+                                                style={{ textDecoration: "none", color: "white" }}
+                                                to="/profile"
+                                            >
+                                                <Button
+                                                    style={{ textDecoration: "none", color: "blue" }}
+                                                    color="secondary"
+                                                >
+                                                    Profile
+                        </Button>
+                                            </NavLink>
+                                        </MenuItem>
+                                        <MenuItem onClick={this.handleClose}>
+                                            <NavLink
+                                                style={{ textDecoration: "none", color: "blue" }}
+                                                to="/about"
+                                            >
+                                                <Button color="inherit">About</Button>
+                                            </NavLink>
+                                        </MenuItem>
+                                        <MenuItem onClick={this.handleClose}>
+                                            <NavLink
+                                                style={{ textDecoration: "none", color: "blue" }}
+                                                to="/"
+                                            >
+                                                <Button
+                                                    style={{ textDecoration: "none", color: "blue" }}
+                                                    color="secondary"
+                                                    onClick={this.logout}
+                                                >
+                                                    Logout
+                        </Button>
+                                            </NavLink>
+                                        </MenuItem>
+                                    </Menu>
+                                </div>
                             )}
                         </Toolbar>
                     </AppBar>
                 </div>
-            </React.Fragment>
         );
     }
 }

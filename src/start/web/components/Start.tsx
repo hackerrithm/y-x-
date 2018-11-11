@@ -20,7 +20,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import StarIcon from "@material-ui/icons/StarBorder";
 import SignUpContainer from "src/authentication/web/components/SignUp.container";
-import '../ui/stylesheets/start.css';
+import "../ui/stylesheets/start.css";
 
 const tiers = [
     {
@@ -150,7 +150,7 @@ class Pricing extends React.Component<any, any> {
                             variant="h2"
                             align="center"
                             color="textPrimary"
-                            gutterBottom
+                            gutterBottom={true}
                         >
                             Pricing
             </Typography>
@@ -166,11 +166,11 @@ class Pricing extends React.Component<any, any> {
             </Typography>
                     </div>
                     {/* End hero unit */}
-                    <Grid container spacing={40} alignItems="flex-end">
+                    <Grid container={true} spacing={40} alignItems="flex-end">
                         {tiers.map((tier: any) => (
                             // Enterprise card is full width at sm breakpoint
                             <Grid
-                                item
+                                item={true}
                                 key={tier.title}
                                 xs={12}
                                 sm={tier.title === "Enterprise" ? 12 : 6}
@@ -206,7 +206,7 @@ class Pricing extends React.Component<any, any> {
                                     </CardContent>
                                     <CardActions className={classes.cardActions}>
                                         <Button
-                                            fullWidth
+                                            fullWidth={true}
                                             variant={tier.buttonVariant}
                                             color="primary"
                                         >
@@ -229,7 +229,8 @@ class Start extends React.Component<any, any, any> {
         this.state = {
             emailAddress: "",
             videoURL: [
-                "https://player.vimeo.com/external/260015882.hd.mp4?s=a1321e6df42f072dc1a0c62018580a2b2387f402&profile_id=174"
+                "https://player.vimeo.com/external/186481192.hd.mp4?s=9b50836a73b3749e1c3dd65eb78e8f81ee38c08e&profile_id=174"
+                // "https://player.vimeo.com/external/260015882.hd.mp4?s=a1321e6df42f072dc1a0c62018580a2b2387f402&profile_id=174"
                 // "https://d15iertza0f11s.cloudfront.net/app/uploads/2018/08/16110122/SoE_Master_NEWVERSION_HELENA_2.mp4"
             ],
             value: 0
@@ -257,7 +258,14 @@ class Start extends React.Component<any, any, any> {
         return (
             <div key={"start-page"} className="container">
                 <section>
-                    <h1 className="page-header-title" appdir-scroll-fade="">Explore. Discover. Live.</h1>
+                    <div className="in-video-signup">
+                        <SignUpContainer {...this.context} />
+                    </div>
+                    <h1 className="page-header-title" appdir-scroll-fade="">
+                        <p>Explore.</p> 
+                        <p>Discover.</p> 
+                        <p>Live.</p>
+          </h1>
                     <video
                         id="background-video"
                         loop={true}
@@ -280,17 +288,16 @@ class Start extends React.Component<any, any, any> {
                 </section>
                 <section>
                     <Grid container={true} alignItems={"center"}>
-                        <Grid item={true} sm={4} />
-                        <Grid item={true} xs={12} sm={4} />
-                        <Grid item={true} sm={4} />
+                        <Grid item={true} sm={2} />
+                        <Grid item={true} xs={12} sm={8}>
+                            <SignUpContainer {...this.context} />
+                        </Grid>
+                        <Grid item={true} sm={2} />
                     </Grid>
                 </section>
                 {/* <section>
                     <LoginContainer {...this.context}/>
                 </section> */}
-                <section>
-                    <SignUpContainer {...this.context} />
-                </section>
                 <section>
                     <BottomNavigation
                         value={value}

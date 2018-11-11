@@ -30,6 +30,7 @@ export const styles = (theme: any) => ({
             backgroundColor: fade("#6c00af", 0.95)
         },
         marginLeft: 0,
+        marginRight: theme.spacing.unit * 2,
         width: "100%",
         [theme.breakpoints.up("sm")]: {
             marginLeft: theme.spacing.unit,

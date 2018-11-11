@@ -34,8 +34,8 @@ class SignUp extends React.Component<IPassedProps, {}> {
         return (
             <div>
                 <Grid container={true} alignItems={"center"}>
-                    <Grid item={true} sm={4} />
-                    <Grid item={true} xs={12} sm={4}>
+                    <Grid item={true} sm={2} />
+                    <Grid item={true} xs={12} sm={8}>
                         <Paper className={classes.paper}>
                             <Avatar className={classes.avatar}>
                                 <LockIcon />
@@ -50,31 +50,35 @@ class SignUp extends React.Component<IPassedProps, {}> {
                                 action="/auth/signup"
                                 method="POST"
                             >
-                                <TextField
-                                    id="firstname"
-                                    label="Firstname"
-                                    className={classes.textField}
-                                    margin="normal"
-                                    // onKeyDown={this.onKeyDown}
-                                    // error={this.state.usernameError !== undefined}
-                                    aria-describedby="firstname-error-text"
-                                    name="firstname"
-                                    onChange={this.props.onChange}
-                                    value={this.props.firstname}
-                                />
-                                <TextField
-                                    id="lastname"
-                                    label="Lastname"
-                                    className={classes.textField}
-                                    margin="normal"
-                                    // onKeyDown={this.onKeyDown}
-                                    // error={this.state.usernameError !== undefined}
-                                    aria-describedby="lastname-error-text"
-                                    name="lastname"
-                                    onChange={this.props.onChange}
-                                    value={this.props.lastname}
-                                />
-                                <FormControl margin="normal" required fullWidth>
+                                <FormControl margin="normal" required={true} fullWidth={true}>
+                                    <TextField
+                                        id="firstname"
+                                        label="Firstname"
+                                        className={classes.textField}
+                                        margin="normal"
+                                        // onKeyDown={this.onKeyDown}
+                                        // error={this.state.usernameError !== undefined}
+                                        aria-describedby="firstname-error-text"
+                                        name="firstname"
+                                        onChange={this.props.onChange}
+                                        value={this.props.firstname}
+                                    />
+                                </FormControl>
+                                <FormControl margin="normal" required={true} fullWidth={true}>
+                                    <TextField
+                                        id="lastname"
+                                        label="Lastname"
+                                        className={classes.textField}
+                                        margin="normal"
+                                        // onKeyDown={this.onKeyDown}
+                                        // error={this.state.usernameError !== undefined}
+                                        aria-describedby="lastname-error-text"
+                                        name="lastname"
+                                        onChange={this.props.onChange}
+                                        value={this.props.lastname}
+                                    />
+                                </FormControl>
+                                <FormControl margin="normal" required={true} fullWidth={true}>
                                     <TextField
                                         id="username"
                                         label="Username"
@@ -86,7 +90,7 @@ class SignUp extends React.Component<IPassedProps, {}> {
                                         value={this.props.username}
                                     />
                                 </FormControl>
-                                <FormControl margin="normal" required fullWidth>
+                                <FormControl margin="normal" required={true} fullWidth={true}>
                                     <TextField
                                         id="password"
                                         label="Password"
@@ -104,7 +108,7 @@ class SignUp extends React.Component<IPassedProps, {}> {
                                     label="Remember me"
                                 />
                                 <Button
-                                    fullWidth
+                                    fullWidth={true}                                    
                                     color="primary"
                                     className={classes.submit}
                                     variant="contained"
@@ -121,7 +125,7 @@ class SignUp extends React.Component<IPassedProps, {}> {
                             </form>
                         </Paper>
                     </Grid>
-                    <Grid item={true} sm={4} />
+                    <Grid item={true} sm={2} />
                 </Grid>
             </div>
         );

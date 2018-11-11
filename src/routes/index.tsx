@@ -16,7 +16,7 @@ export default class AppRouter extends React.Component {
     public render() {
         return (
             <React.Fragment>
-                <HashRouter basename="awesome.xyz" hashType="hashbang">
+                <HashRouter basename="awesome.xyz" hashType="slash">
                     <div className="container-fluid">
                         <Route component={App} />
                         <Switch>

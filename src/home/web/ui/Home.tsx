@@ -8,12 +8,9 @@ export const styles: any = (theme: any) => ({
         overflow: "hidden",
         backgroundColor: theme.palette.background.paper
     },
-    card: {
-        maxWidth: 400
-    },
     appBarSpacer: theme.mixins.toolbar,
     media: {
-        height: 0,
+        height: 100,
         paddingTop: "56.25%", // 16:9,
         marginTop: "30"
     },
@@ -53,5 +50,44 @@ export const styles: any = (theme: any) => ({
     titleBar: {
         background:
             "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)"
+    },
+    icon: {
+        marginRight: theme.spacing.unit * 2
+    },
+    heroUnit: {
+        backgroundColor: theme.palette.background.paper
+    },
+    heroContent: {
+        maxWidth: 600,
+        margin: "0 auto",
+        padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`
+    },
+    heroButtons: {
+        marginTop: theme.spacing.unit * 4
+    },
+    layout: {
+        width: "auto",
+        marginLeft: theme.spacing.unit * 3,
+        marginRight: theme.spacing.unit * 3,
+        [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
+            width: 1100,
+            marginLeft: "auto",
+            marginRight: "auto"
+        },
+    },
+    cardGrid: {
+        padding: `${theme.spacing.unit * 8}px 0`,
+        marginLeft: 444
+    },
+    card: {
+        height: "100%",
+        display: "flex",
+        flexDirection: "column"
+    },
+    cardMedia: {
+        paddingTop: "56.25%" // 16:9
+    },
+    cardContent: {
+        flexGrow: 1,
     }
 });

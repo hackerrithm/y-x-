@@ -62,7 +62,7 @@ class Login extends React.Component<IPassedProps, {}> {
                                 action="/auth/login"
                                 method="POST"
                             >
-                                <FormControl margin="normal" required fullWidth>
+                                <FormControl margin="normal" required={true} fullWidth={true}>
                                     <TextField
                                         id="username"
                                         label="Username"
@@ -74,7 +74,7 @@ class Login extends React.Component<IPassedProps, {}> {
                                         value={this.props.username}
                                     />
                                 </FormControl>
-                                <FormControl margin="normal" required fullWidth>
+                                <FormControl margin="normal" required={true} fullWidth={true}>
                                     <TextField
                                         id="password"
                                         label="Password"
@@ -92,7 +92,7 @@ class Login extends React.Component<IPassedProps, {}> {
                                     label="Remember me"
                                 />
                                 <Button
-                                    fullWidth
+                                    fullWidth={true}
                                     color="primary"
                                     className={classes.submit}
                                     variant="contained"

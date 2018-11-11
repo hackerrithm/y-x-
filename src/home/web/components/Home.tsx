@@ -11,19 +11,24 @@ import {
     CardContent,
     CardActions,
     Typography,
-    CardHeader,
-    Collapse
+    // CardHeader,
+    // Collapse,
+    Button,
+    CardActionArea
 } from "@material-ui/core";
-import Avatar from "@material-ui/core/Avatar";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+// import Avatar from "@material-ui/core/Avatar";
+// import FavoriteIcon from "@material-ui/icons/Favorite";
+// import ShareIcon from "@material-ui/icons/Share";
+// import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+// import MoreVertIcon from "@material-ui/icons/MoreVert";
 import IconButton from "@material-ui/core/IconButton";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
-import classnames from "classnames";
+// import classnames from "classnames";
 import { log } from "util";
+import * as classNames from "classnames";
+import '../ui/stylesheets/home.css';
 
+const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 const tileData = [
     {
         img: "https://www.wissenschaft-aktuell.de/onTEAM/fotos/221368551775.jpg",
@@ -96,7 +101,14 @@ class ListFeed extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
 
-        this.state = { expanded: false };
+        this.state = { expanded: false, imgSrc: "" };
+    }
+
+    public componentDidMount() {
+        this.setState({
+            imgSrc:
+                "https://memestatic.fjcdn.com/large/pictures/df/f0/dff066_6440048.jpg"
+        });
     }
 
     public handleExpandClick = () => {
@@ -105,114 +117,87 @@ class ListFeed extends React.Component<any, any> {
 
     public render() {
         const { classes } = this.props;
-        const jar = ["1", "2", "3"];
+        const { imgSrc } = this.state;
+        // const jar = ["1", "2", "3"];
 
         return (
             <div key={"card-el"}>
                 <Grid container={true} alignItems={"center"}>
+                    {
+                        // awesome content
+                    }
                     <Grid item={true} sm={2} />
-                    <Grid item={true} xs={12} sm={8}>
-                        <div key={1}>
-                            {jar.map((e: any, index: any) => {
-                                return (
-                                    <div key={index + e + "-key-$"}>
-                                        <Card className={classes.card} key={index + 1}>
-                                            <CardHeader
-                                                avatar={
-                                                    <Avatar
-                                                        aria-label="Recipe"
-                                                        className={classes.avatar}
-                                                    >
-                                                        R
-                          </Avatar>
-                                                }
-                                                action={
-                                                    <IconButton>
-                                                        <MoreVertIcon />
-                                                    </IconButton>
-                                                }
-                                                title="Shrimp and Chorizo Paella"
-                                                subheader="September 14, 2016"
-                                            />
-                                            <CardMedia
-                                                className={classes.media}
-                                                image={
-                                                    "https://www.wissenschaft-aktuell.de/onTEAM/fotos/221368551775.jpg"
-                                                }
-                                                title="Contemplative Reptile"
-                                            />
-                                            <CardContent>
-                                                <Typography component="p">
-                                                    This impressive paella is a perfect party dish and a
-                                                    fun meal to cook together with your guests. Add 1 cup
-                                                    of frozen peas along with the mussels, if you like.
-                        </Typography>
-                                            </CardContent>
-                                            <CardActions
-                                                className={classes.actions}
-                                                disableActionSpacing={true}
-                                            >
-                                                <IconButton aria-label="Add to favorites">
-                                                    <FavoriteIcon />
-                                                </IconButton>
-                                                <IconButton aria-label="Share">
-                                                    <ShareIcon />
-                                                </IconButton>
-                                                <IconButton
-                                                    className={classnames(classes.expand, {
-                                                        [classes.expandOpen]: this.state.expanded
-                                                    })}
-                                                    onClick={this.handleExpandClick}
-                                                    aria-expanded={this.state.expanded}
-                                                    aria-label="Show more"
-                                                >
-                                                    <ExpandMoreIcon />
-                                                </IconButton>
-                                            </CardActions>
-                                            <Collapse
-                                                in={this.state.expanded}
-                                                timeout="auto"
-                                                unmountOnExit={true}
-                                            >
+                    <Grid item={true} sm={8}>
+                        <div className={classes.heroUnit}>
+                            <div className={classes.heroContent}>
+                                <Typography
+                                    component="h1"
+                                    variant="h2"
+                                    align="center"
+                                    color="textPrimary"
+                                    gutterBottom={true}
+                                >
+                                    Album layout
+                </Typography>
+                                <Typography
+                                    variant="h6"
+                                    align="center"
+                                    color="textSecondary"
+                                    paragraph={true}
+                                >
+                                    Something short and leading about the collection below—its
+                                    contents, the creator, etc. Make it short and sweet, but not
+                                    too short so folks don&apos;t simply skip over it entirely.
+                </Typography>
+                                <div className={classes.heroButtons}>
+                                    <Grid container={true} spacing={16} justify="center">
+                                        <Grid item={true}>
+                                            <Button variant="contained" color="primary">
+                                                Main call to action
+                      </Button>
+                                        </Grid>
+                                        <Grid item={true}>
+                                            <Button variant="outlined" color="primary">
+                                                Secondary action
+                      </Button>
+                                        </Grid>
+                                    </Grid>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={classNames(classes.layout, classes.cardGrid)}>
+                            <Grid container={true}>
+                                {cards.map((card: any, index: number) => (
+                                        <Card className={classes.card} key={index}>
+                                            <CardActionArea>
+                                                <CardMedia
+                                                    className={classes.media}
+                                                    image={imgSrc}
+                                                    title="Contemplative Reptile"
+                                                    style={{ height: 600 }}
+                                                />
                                                 <CardContent>
-                                                    <Typography paragraph={true}>Method:</Typography>
-                                                    <Typography paragraph={true}>
-                                                        Heat 1/2 cup of the broth in a pot until simmering,
-                                                        add saffron and set aside for 10 minutes.
+                                                    <Typography gutterBottom={true} variant="h5" component="h2">
+                                                        Lizard
                           </Typography>
-                                                    <Typography paragraph={true}>
-                                                        Heat oil in a (14- to 16-inch) paella pan or a
-                                                        large, deep skillet over medium-high heat. Add
-                                                        chicken, shrimp and chorizo, and cook, stirring
-                                                        occasionally until lightly browned, 6 to 8 minutes.
-                                                        Transfer shrimp to a large plate and set aside,
-                                                        leaving chicken and chorizo in the pan. Add
-                                                        pimentón, bay leaves, garlic, tomatoes, onion, salt
-                                                        and pepper, and cook, stirring often until thickened
-                                                        and fragrant, about 10 minutes. Add saffron broth
-                                                        and remaining 4 1/2 cups chicken broth; bring to a
-                                                        boil.
-                          </Typography>
-                                                    <Typography paragraph={true}>
-                                                        Add rice and stir very gently to distribute. Top
-                                                        with artichokes and peppers, and cook without
-                                                        stirring, until most of the liquid is absorbed, 15
-                                                        to 18 minutes. Reduce heat to medium-low, add
-                                                        reserved shrimp and mussels, tucking them down into
-                                                        the rice, and cook again without stirring, until
-                                                        mussels have opened and rice is just tender, 5 to 7
-                                                        minutes more. (Discard any mussels that don’t open.)
-                          </Typography>
-                                                    <Typography>
-                                                        Set aside off of the heat to let rest for 10
-                                                        minutes, and then serve.
+                                                    <Typography component="p">
+                                                        Lizards are a widespread group of squamate reptiles,
+                                                        with over 6,000 species, ranging across all
+                                                        continents except Antarctica
                           </Typography>
                                                 </CardContent>
-                                            </Collapse>
+                                            </CardActionArea>
+                                            <CardActions>
+                                                <Button size="small" color="primary">
+                                                    Share
+                        </Button>
+                                                <Button size="small" color="primary">
+                                                    Learn More
+                        </Button>
+                                            </CardActions>
                                         </Card>
-                                    </div>
-                                );
-                            })}
+                                ))}
+                            </Grid>
                         </div>
                     </Grid>
                     <Grid item={true} sm={2} />

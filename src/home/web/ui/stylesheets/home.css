@@ -1,0 +1,10 @@
+.homeCardsList {
+    width: 100%;
+    margin-bottom: 10%;
+    /* margin-left: 10%; */
+    padding-top: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* width: 40%; */
+}
