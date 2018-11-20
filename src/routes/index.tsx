@@ -13,25 +13,25 @@ import Profile from "src/profile/web/components/Profile";
 import Setting from "src/settings/web/components/Setting";
 
 export default class AppRouter extends React.Component {
-    public render() {
-        return (
-            <React.Fragment>
-                <HashRouter basename="awesome.xyz" hashType="slash">
-                    <div className="container-fluid">
-                        <Route component={App} />
-                        <Switch>
-                            <Route exact={true} path="/" component={Start} />
-                            <Route path="/signup" component={SignUpContainer} />
-                            <Route path="/login" component={LoginContainer} />
-                            <Route path="/about" component={About} />
-                            <Route path="/dashboard" component={Authenticate(Dashboard)} />
-                            <Route path="/home" component={Authenticate(Home)} />
-                            <Route path="/profile" component={Authenticate(Profile)} />
-                            <Route path="/settings" component={Authenticate(Setting)} />
-                        </Switch>
-                    </div>
-                </HashRouter>
-            </React.Fragment>
-        );
-    }
+        public render() {
+                return (
+                        <React.Fragment>
+                                <HashRouter basename="awesome.xyz" hashType="slash">
+                                        <div className="container-fluid">
+                                                <Route component={App} />
+                                                <Switch>
+                                                        <Route exact={true} path="/" component={Start} />
+                                                        <Route path="/signup" component={SignUpContainer} />
+                                                        <Route path="/login" component={LoginContainer} />
+                                                        <Route path="/about" component={About} />
+                                                        <Route path="/dashboard" component={Authenticate(Dashboard)} />
+                                                        <Route path="/home" component={Authenticate(Home)} />
+                                                        <Route path="/profile" component={Authenticate(Profile)} />
+                                                        <Route path="/settings" component={Authenticate(Setting)} />
+                                                </Switch>
+                                        </div>
+                                </HashRouter>
+                        </React.Fragment>
+                );
+        }
 }

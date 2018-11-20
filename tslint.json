@@ -1,23 +1,23 @@
 {
-    "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
-    "rules": {
-        "object-literal-sort-keys": false,
-        "ordered-imports": false,        
-        "max-classes-per-file": [true, 4],
-        "no-namespace": [false, "allow-declarations"]
-    },
-    "jsRules": {
-        "object-literal-sort-keys": false,
-        "ordered-imports": false,
-        "no-namespace": [false, "allow-declarations"]
-    },
-    "jsx-boolean-value": false,
-    "linterOptions": {
-        "object-literal-sort-keys": [false, "ignore-case", "match-declaration-order", "shorthand-first"],
-        "exclude": [
-        "config/**/*.js",
-        "node_modules/**/*.ts",
-        "coverage/lcov-report/*.js"
-        ]
-    }
+        "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+        "rules": {
+                "object-literal-sort-keys": false,
+                "ordered-imports": false,
+                "max-classes-per-file": [true, 4],
+                "no-namespace": [false, "allow-declarations"]
+        },
+        "jsRules": {
+                "object-literal-sort-keys": false,
+                "ordered-imports": false,
+                "no-namespace": [false, "allow-declarations"]
+        },
+        "jsx-boolean-value": false,
+        "linterOptions": {
+                "object-literal-sort-keys": [false, "ignore-case", "match-declaration-order", "shorthand-first"],
+                "exclude": [
+                        "config/**/*.js",
+                        "node_modules/**/*.ts",
+                        "coverage/lcov-report/*.js"
+                ]
+        }
 }
